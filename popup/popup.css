@@ -1,0 +1,190 @@
+:root {
+  --ink: #120d0e;
+  --ink-2: #1b1314;
+  --ink-3: #251a1b;
+  --oxblood: #6e1616;
+  --oxblood-hi: #8f2420;
+  --gold: #c6a052;
+  --gold-dim: #8a7140;
+  --gold-faint: rgba(198, 160, 82, 0.18);
+  --parchment: #efe3c8;
+  --parchment-dim: #b8a98c;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --mono: "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--parchment);
+  font: 13px/1.45 var(--serif);
+}
+
+body { width: 340px; }
+
+.card {
+  margin: 8px;
+  padding: 14px 16px 12px;
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(143, 36, 32, 0.22), transparent 60%),
+    var(--ink-2);
+  border: 1px solid var(--gold-dim);
+  outline: 1px solid var(--gold-faint);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+.head { display: flex; align-items: center; gap: 12px; }
+.seal { flex: none; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55)); }
+.title { flex: 1; min-width: 0; }
+
+h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant: small-caps;
+  color: var(--gold);
+}
+
+.motto {
+  margin: 1px 0 0;
+  font-style: italic;
+  color: var(--parchment-dim);
+  font-size: 12px;
+}
+
+/* ── Ornamental rule ────────────────────────────────── */
+.rule {
+  display: flex; align-items: center; gap: 10px;
+  margin: 12px 0;
+  color: var(--gold-dim);
+  font-size: 12px;
+}
+.rule::before, .rule::after {
+  content: ""; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+
+/* ── Master switch ──────────────────────────────────── */
+.switch { position: relative; flex: none; cursor: pointer; }
+.switch input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.track {
+  display: block; width: 38px; height: 20px; border-radius: 10px;
+  background: var(--ink-3);
+  border: 1px solid var(--gold-dim);
+  transition: background 0.2s;
+}
+.knob {
+  position: absolute; top: 3px; left: 3px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--parchment-dim);
+  transition: transform 0.2s, background 0.2s;
+}
+.switch input:checked + .track { background: var(--oxblood); border-color: var(--gold); }
+.switch input:checked + .track .knob { transform: translateX(18px); background: var(--gold); }
+.switch input:focus-visible + .track { outline: 1px solid var(--gold); outline-offset: 2px; }
+
+/* ── Modes ──────────────────────────────────────────── */
+.modes { border: 0; margin: 0; padding: 0; display: grid; gap: 8px; }
+.modes legend {
+  padding: 0; margin-bottom: 8px;
+  font-variant: small-caps; letter-spacing: 0.08em;
+  color: var(--gold-dim); font-size: 12px;
+}
+
+.mode {
+  position: relative; display: block; cursor: pointer;
+  padding: 9px 12px 9px 34px;
+  border: 1px solid #3a2a26;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: border-color 0.15s, background 0.15s;
+}
+.mode:hover { border-color: var(--gold-dim); }
+.mode input { position: absolute; opacity: 0; }
+.mode::before {
+  content: ""; position: absolute; left: 12px; top: 13px;
+  width: 11px; height: 11px; border-radius: 50%;
+  border: 1px solid var(--gold-dim);
+  background: var(--ink-2);
+}
+.mode:has(input:checked) {
+  border-color: var(--gold);
+  background: linear-gradient(90deg, rgba(110, 22, 22, 0.55), rgba(110, 22, 22, 0.15));
+}
+.mode:has(input:checked)::before {
+  background: radial-gradient(circle, var(--gold) 0 3px, var(--oxblood) 3.5px);
+  border-color: var(--gold);
+}
+.mode:has(input:focus-visible) { outline: 1px solid var(--gold); outline-offset: 2px; }
+
+.mode-body { display: block; }
+.mode-name { display: block; font-weight: 600; color: var(--parchment); letter-spacing: 0.02em; }
+.mode-desc { display: block; color: var(--parchment-dim); font-size: 12px; }
+
+select {
+  font: inherit; font-size: 12px;
+  color: var(--gold);
+  background: var(--ink-3);
+  border: 1px solid var(--gold-dim);
+  border-radius: 2px;
+  padding: 0 4px;
+  margin: 0 2px;
+  cursor: pointer;
+}
+select:focus-visible { outline: 1px solid var(--gold); }
+
+/* ── Preview ────────────────────────────────────────── */
+.preview {
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: var(--ink);
+  border-left: 2px solid var(--oxblood-hi);
+  font-size: 11px;
+}
+.preview .row { display: flex; gap: 8px; align-items: baseline; }
+.preview .row + .row { margin-top: 3px; }
+.preview .tag {
+  flex: none; width: 48px;
+  font-variant: small-caps; letter-spacing: 0.06em;
+  color: var(--gold-dim);
+}
+.preview code {
+  font: 11px/1.4 var(--mono);
+  overflow-wrap: anywhere;
+}
+.preview .before code { color: #8c7f75; }
+.preview .before code s { color: #c0645a; text-decoration-color: rgba(192, 100, 90, 0.7); }
+.preview .after code { color: var(--parchment); }
+
+/* ── Options ────────────────────────────────────────── */
+.opts { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.opt { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; color: var(--parchment-dim); font-size: 12px; }
+.opt b { color: var(--parchment); font-weight: 600; }
+.opt input { position: absolute; opacity: 0; }
+.box {
+  flex: none; width: 13px; height: 13px; margin-top: 2px;
+  border: 1px solid var(--gold-dim); border-radius: 2px;
+  background: var(--ink);
+  display: grid; place-items: center;
+}
+.opt input:checked + .box { background: var(--oxblood); border-color: var(--gold); }
+.opt input:checked + .box::after { content: "✓"; color: var(--gold); font-size: 10px; line-height: 1; }
+.opt input:focus-visible + .box { outline: 1px solid var(--gold); outline-offset: 2px; }
+
+/* ── Footer ─────────────────────────────────────────── */
+.foot {
+  margin-top: 12px; padding-top: 8px;
+  border-top: 1px solid #3a2a26;
+  text-align: center;
+  font-style: italic; font-size: 11px;
+  color: var(--gold-dim);
+}
+
+/* ── Disabled state ─────────────────────────────────── */
+body.off .modes, body.off .preview, body.off .opts { opacity: 0.4; pointer-events: none; filter: grayscale(0.6); }
