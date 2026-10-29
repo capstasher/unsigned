@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Unsigned</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="card">
+    <header class="head">
+      <img class="seal" src="../icons/icon128.png" alt="" width="40" height="40">
+      <div class="title">
+        <h1>Unsigned</h1>
+        <p class="motto">Your links leave without your name on them.</p>
+      </div>
+      <label class="switch" title="Enable or disable">
+        <input type="checkbox" id="enabled">
+        <span class="track"><span class="knob"></span></span>
+      </label>
+    </header>
+
+    <div class="rule"><span>❦</span></div>
+
+    <fieldset class="modes" id="modes">
+      <legend>When you copy a tweet link</legend>
+
+      <label class="mode">
+        <input type="radio" name="mode" value="clean">
+        <span class="mode-body">
+          <span class="mode-name">Clean</span>
+          <span class="mode-desc">Keep it on x.com, strip the tags.</span>
+        </span>
+      </label>
+
+      <label class="mode">
+        <input type="radio" name="mode" value="vx">
+        <span class="mode-body">
+          <span class="mode-name">Embed</span>
+          <span class="mode-desc">
+            Swap to
+            <select id="embedHost" aria-label="Embed service"></select>
+            for rich previews.
+          </span>
+        </span>
+      </label>
+    </fieldset>
+
+    <div class="preview" aria-live="polite">
+      <div class="row before"><span class="tag">X gives</span><code id="pvBefore"></code></div>
+      <div class="row after"><span class="tag">You get</span><code id="pvAfter"></code></div>
+    </div>
+
+    <div class="rule"><span>❦</span></div>
+
+    <ul class="opts">
+      <li>
+        <label class="opt">
+          <input type="checkbox" id="shiftFlip">
+          <span class="box"></span>
+          <span><b>Shift-click flips it.</b> Hold Shift as you click “Copy link” to use the other mode once.</span>
+        </label>
+      </li>
+      <li>
+        <label class="opt">
+          <input type="checkbox" id="scrubHtml">
+          <span class="box"></span>
+          <span><b>Scrub rich copies.</b> Remove the hidden tracking spans X tucks into copied text.</span>
+        </label>
+      </li>
+    </ul>
+
+    <footer class="foot">
+      <span id="tally">No links unsigned yet.</span>
+    </footer>
+  </main>
+
+  <script src="../src/rewrite.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

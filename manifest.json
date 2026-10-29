@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Unsigned",
+  "short_name": "Unsigned",
+  "version": "1.0.0",
+  "description": "Strips the sharer-tracking tags X adds to copied tweet links, with an optional vxtwitter / fixupx embed mode.",
+  "minimum_chrome_version": "111",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Unsigned",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "permissions": ["storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.x.com/*", "https://*.twitter.com/*"],
+      "js": ["src/rewrite.js", "src/hook.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://*.x.com/*", "https://*.twitter.com/*"],
+      "js": ["src/bridge.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
