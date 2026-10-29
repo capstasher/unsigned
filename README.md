@@ -3,9 +3,9 @@
 A Chrome / Brave / Edge extension that strips the sharer-tracking tags X adds to copied tweet links, and can optionally hand you a vxtwitter (or fixvx / fxtwitter / fixupx) link instead.
 
 ```
-X gives:  https://x.com/jack/status/20?s=12&t=dHJhY2tlZC10b2tlbg
-Clean:    https://x.com/jack/status/20
-Embed:    https://vxtwitter.com/jack/status/20
+X gives:  https://x.com/CapStasher/status/1984351689248502248?s=12&t=dHJhY2tlZC10b2tlbg
+Clean:    https://x.com/CapStasher/status/1984351689248502248
+Embed:    https://vxtwitter.com/CapStasher/status/1984351689248502248
 ```
 
 The `t=` value is a session-bound token that identifies whoever copied the link; `s=` marks the client it came from.
