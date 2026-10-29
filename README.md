@@ -1,6 +1,6 @@
 # Unsigned
 
-A browser extension for Chrome, Brave, Edge and Firefox that strips the sharer-tracking tags X adds to copied tweet links, and can optionally hand you a vxtwitter (or fixvx / fxtwitter / fixupx) link instead.
+A Chrome / Brave / Edge extension that strips the sharer-tracking tags X adds to copied tweet links, and can optionally hand you a vxtwitter (or fixvx / fxtwitter / fixupx) link instead.
 
 ```
 X gives:  https://x.com/jack/status/20?s=12&t=dHJhY2tlZC10b2tlbg
@@ -14,22 +14,12 @@ The `t=` value is a session-bound token that identifies whoever copied the link;
 
 ## Install
 
-### Chrome, Brave, Edge
-
-1. Download `unsigned-chrome-<version>.zip` from [Releases](../../releases) and unzip it into its own folder somewhere permanent.
+1. Download `unsigned-<version>.zip` from [Releases](../../releases) and unzip it into its own folder somewhere permanent.
 2. Go to `chrome://extensions` (or `brave://extensions`, `edge://extensions`) and turn on **Developer mode**.
 3. **Load unpacked** → pick that folder.
 4. Reload any open x.com tabs.
 
 Needs version 111 or later.
-
-### Firefox
-
-Install from Firefox Add-ons (listing pending).
-
-To try it before then: download `unsigned-firefox-<version>.zip` from [Releases](../../releases), unzip it, open `about:debugging` → **This Firefox** → **Load Temporary Add-on…** and pick `manifest.json`. Temporary add-ons are removed when Firefox restarts.
-
-Needs Firefox 140 or later (142 on Android).
 
 ## Use
 
@@ -49,10 +39,10 @@ No network requests, no analytics, nothing stored but your settings. Permissions
 
 ## Building
 
-The repo root is the Chrome build as-is, so **Load unpacked** works on it directly. To produce both release packages:
+The repo root loads as-is via **Load unpacked**. To produce the release zip:
 
 ```
 node build.mjs
 ```
 
-This writes `dist/unsigned-chrome-<version>.zip` and `dist/unsigned-firefox-<version>.zip` (plus unpacked copies of each). The Firefox build is the same code with `platform/firefox.json` merged over `manifest.json`. No dependencies.
+This writes `dist/unsigned-<version>.zip`. No dependencies.

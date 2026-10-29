@@ -1,5 +1,5 @@
 /*
- * Unsigned — background (service worker in Chrome, event page in Firefox).
+ * Unsigned — background service worker.
  * Flashes a badge on the toolbar icon when a copied link was rewritten.
  */
 const ext = globalThis.browser ?? globalThis.chrome;
